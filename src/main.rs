@@ -6,7 +6,6 @@ use discord::DiscordLogger;
 use rmcp::serve_server;
 use serenity::all::ChannelId;
 use std::env;
-use std::path::PathBuf;
 use tokio::io::{stdin, stdout};
 
 #[derive(Debug, Parser)]
