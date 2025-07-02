@@ -127,6 +127,14 @@ Alternatively, you can manually add the following to your MCP configuration file
 - `LOG_CHANNEL_ID`: Discord channel ID for logs
 - `LOG_THREAD_NAME`: Thread name (default: "Conversation Log")
 
+### Thread Naming
+
+The logger automatically includes the current working directory in the thread name. For example:
+- If `LOG_THREAD_NAME` is "Conversation Log" and you're working in `/home/user/project`
+- The actual thread name will be: "Conversation Log [/home/user/project]"
+
+This helps identify which project or context the conversation logs belong to.
+
 ## Usage
 
 Once configured, AI assistants can use the `log_conversation` tool:

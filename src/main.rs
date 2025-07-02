@@ -5,6 +5,8 @@ use clap::Parser;
 use discord::DiscordLogger;
 use rmcp::serve_server;
 use serenity::all::ChannelId;
+use std::env;
+use std::path::PathBuf;
 use tokio::io::{stdin, stdout};
 
 #[derive(Debug, Parser)]
@@ -25,7 +27,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         log_thread_name,
     } = Args::parse();
 
-    let discord_logger = DiscordLogger::new(log_channel_id, log_thread_name);
+    // Get current working directory
+    let cwd = env::current_dir()
+        .map(|p| p.to_string_lossy().to_string())
+        .unwrap_or_else(|_| "unknown".to_string());
+    
+    // Include working directory in thread name
+    let thread_name_with_cwd = format!("{} [{}]", log_thread_name, cwd);
+    
+    let discord_logger = DiscordLogger::new(log_channel_id, thread_name_with_cwd);
     let discord = discord::start(&discord_token, discord_logger.handler().clone());
 
     let handler = logger::ConversationLogger::new(discord_logger);
