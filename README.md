@@ -56,7 +56,30 @@ cargo install --path .
 
 ## Configuration
 
-### Claude Desktop / Claude Code
+### Quick Setup for Claude Code
+
+1. Run the setup script from the repository directory:
+   ```bash
+   ./setup-discord-env.sh
+   ```
+
+2. Edit `~/.claude/discord-config.json` with your Discord credentials:
+   ```json
+   {
+     "bot_token": "YOUR_DISCORD_BOT_TOKEN",
+     "channel_id": "YOUR_CHANNEL_ID",
+     "thread_name": "Conversation Log"  // Optional, defaults to "Conversation Log"
+   }
+   ```
+
+3. Load environment variables (optional for testing):
+   ```bash
+   source ./load-discord-env.sh
+   ```
+
+4. Claude Code will automatically detect and use this configuration when the MCP server is properly configured.
+
+### Manual Configuration
 
 Add the following to your MCP configuration:
 

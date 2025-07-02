@@ -1,0 +1,5 @@
+{
+  "bot_token": "YOUR_DISCORD_BOT_TOKEN",
+  "channel_id": "YOUR_CHANNEL_ID",
+  "thread_name": "Conversation Log"
+}
