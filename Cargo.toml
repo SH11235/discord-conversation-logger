@@ -1,0 +1,20 @@
+[package]
+name = "discord-conversation-logger"
+version = "0.1.0"
+edition = "2021"
+authors = ["SH11235"]
+description = "MCP server for logging conversations to Discord"
+license = "MIT"
+repository = "https://github.com/SH11235/discord-conversation-logger"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4.5", features = ["derive", "env"] }
+tokio = { version = "1.45", features = ["macros", "rt-multi-thread", "io-std"] }
+serenity = { version = "0.12", features = ["collector"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rmcp = { git = "https://github.com/modelcontextprotocol/rust-sdk", rev = "9ca20c69b27e531a5eadfd4b5654592ab93e2b11" }
+rmcp-macros = { git = "https://github.com/modelcontextprotocol/rust-sdk", rev = "9ca20c69b27e531a5eadfd4b5654592ab93e2b11" }
+schemars = "0.8"
+async-trait = "0.1.88"
