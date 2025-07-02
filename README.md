@@ -77,11 +77,35 @@ cargo install --path .
    source ./load-discord-env.sh
    ```
 
-4. Claude Code will automatically detect and use this configuration when the MCP server is properly configured.
+4. Add the MCP server to Claude Code:
+   ```bash
+   # First, load the environment variables (if using discord-config.json):
+   source ./load-discord-env.sh
+   
+   # For global use (available in all projects):
+   claude mcp add -s user discord-conversation-logger discord-conversation-logger \
+     -e DISCORD_TOKEN="$DISCORD_TOKEN" \
+     -e LOG_CHANNEL_ID="$LOG_CHANNEL_ID" \
+     -e LOG_THREAD_NAME="$LOG_THREAD_NAME"
+   
+   # Or manually specify values:
+   claude mcp add -s user discord-conversation-logger discord-conversation-logger \
+     -e DISCORD_TOKEN="your-actual-discord-bot-token" \
+     -e LOG_CHANNEL_ID="123456789012345678" \
+     -e LOG_THREAD_NAME="Conversation Log"
+   
+   # For local project use (default):
+   claude mcp add discord-conversation-logger discord-conversation-logger \
+     -e DISCORD_TOKEN="$DISCORD_TOKEN" \
+     -e LOG_CHANNEL_ID="$LOG_CHANNEL_ID" \
+     -e LOG_THREAD_NAME="$LOG_THREAD_NAME"
+   ```
+
+   Note: The MCP server reads configuration from environment variables or command-line arguments, not directly from `~/.claude/discord-config.json`.
 
 ### Manual Configuration
 
-Add the following to your MCP configuration:
+Alternatively, you can manually add the following to your MCP configuration file (`~/.claude.json`):
 
 ```json
 {
