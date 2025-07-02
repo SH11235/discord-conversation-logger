@@ -85,20 +85,17 @@ cargo install --path .
    # For global use (available in all projects):
    claude mcp add -s user discord-conversation-logger discord-conversation-logger \
      -e DISCORD_TOKEN="$DISCORD_TOKEN" \
-     -e LOG_CHANNEL_ID="$LOG_CHANNEL_ID" \
-     -e LOG_THREAD_NAME="$LOG_THREAD_NAME"
+     -- --log-channel-id "$LOG_CHANNEL_ID" --log-thread-name "$LOG_THREAD_NAME"
    
    # Or manually specify values:
    claude mcp add -s user discord-conversation-logger discord-conversation-logger \
      -e DISCORD_TOKEN="your-actual-discord-bot-token" \
-     -e LOG_CHANNEL_ID="123456789012345678" \
-     -e LOG_THREAD_NAME="Conversation Log"
+     -- --log-channel-id "123456789012345678" --log-thread-name "Conversation Log"
    
    # For local project use (default):
    claude mcp add discord-conversation-logger discord-conversation-logger \
      -e DISCORD_TOKEN="$DISCORD_TOKEN" \
-     -e LOG_CHANNEL_ID="$LOG_CHANNEL_ID" \
-     -e LOG_THREAD_NAME="$LOG_THREAD_NAME"
+     -- --log-channel-id "$LOG_CHANNEL_ID" --log-thread-name "$LOG_THREAD_NAME"
    ```
 
    Note: The MCP server reads configuration from environment variables or command-line arguments, not directly from `~/.claude/discord-config.json`.
@@ -185,6 +182,51 @@ cargo run -- --log-channel-id YOUR_CHANNEL_ID
 ## License
 
 MIT License - see LICENSE file for details
+
+## CLAUDE.md Configuration Example
+
+When using with Claude Code, you can create a `CLAUDE.md` file in your project to establish logging rules:
+
+```markdown
+# Discord Conversation Logger Rules
+
+## Important Message Logging Rules
+
+Please use discord-conversation-logger MCP to log messages in the following cases:
+
+### 1. User Messages (human)
+- Task start/change/completion instructions
+- Important decisions or confirmations
+- Error reports or issue identification
+
+### 2. Assistant Messages (assistant)
+- Task completion reports
+- Important suggestions or solutions
+- Error resolution methods
+- Summary of significant changes made
+
+### 3. System Messages (system)
+- Critical errors or warnings
+- Important environment changes
+- Security-related notifications
+
+## Logging Format
+
+```
+mcp__discord-conversation-logger__log_conversation(
+  message: "Actual message content",
+  role: "human" | "assistant" | "system",
+  context: "Brief context description"
+)
+```
+
+## Cases Not Requiring Logs
+- Simple acknowledgments
+- Intermediate progress reports
+- Temporary debug outputs
+```
+
+This configuration helps maintain an audit trail of important project decisions and progress.
 
 ## Contributing
 
