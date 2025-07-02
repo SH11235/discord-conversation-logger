@@ -2,6 +2,8 @@
 
 An MCP (Model Context Protocol) server that allows AI assistants to log conversations to Discord for review and history tracking.
 
+![スクリーンショット 2025-07-02 235804](https://github.com/user-attachments/assets/bb865811-0756-4727-a35d-1bcfe4db22c9)
+
 ## Overview
 
 This MCP server provides a simple way for AI assistants to maintain conversation logs in Discord. It's useful for:
