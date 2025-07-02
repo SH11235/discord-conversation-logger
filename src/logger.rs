@@ -9,12 +9,7 @@ use std::future::Future;
 
 #[async_trait::async_trait]
 pub trait Logger: Send + Sync + 'static {
-    async fn log(
-        &self,
-        role: &str,
-        message: &str,
-        context: Option<&str>,
-    ) -> anyhow::Result<()>;
+    async fn log(&self, role: &str, message: &str, context: Option<&str>) -> anyhow::Result<()>;
 }
 
 pub struct ConversationLogger<L> {

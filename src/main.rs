@@ -30,10 +30,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cwd = env::current_dir()
         .map(|p| p.to_string_lossy().to_string())
         .unwrap_or_else(|_| "unknown".to_string());
-    
+
     // Include working directory in thread name
     let thread_name_with_cwd = format!("{} [{}]", log_thread_name, cwd);
-    
+
     let discord_logger = DiscordLogger::new(log_channel_id, thread_name_with_cwd);
     let discord = discord::start(&discord_token, discord_logger.handler().clone());
 

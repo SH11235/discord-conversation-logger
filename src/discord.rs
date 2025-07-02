@@ -63,12 +63,7 @@ impl DiscordLogger {
 
 #[async_trait::async_trait]
 impl Logger for DiscordLogger {
-    async fn log(
-        &self,
-        role: &str,
-        message: &str,
-        context: Option<&str>,
-    ) -> anyhow::Result<()> {
+    async fn log(&self, role: &str, message: &str, context: Option<&str>) -> anyhow::Result<()> {
         let ctx = self
             .handler
             .ctx
